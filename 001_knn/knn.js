@@ -7,7 +7,7 @@ class KNN{
 	}
 
 	train(data){
-		this.points = data
+		this.points = this.points.concat(data)
 	}
 }
 
