@@ -1,4 +1,4 @@
-# A Gentle Introduction to Machine Learning 
+np# A Gentle Introduction to Machine Learning
 
 ## Overview
 
@@ -169,8 +169,8 @@ So, for the vector [3,4], the Euclidean Norm is [5]:
 
 This formula should be familiar to anyone who has done geometry.  The Euclidean Norm is also defined for arbitrarily-dimensioned vectors, however.  The following returns the Euclidean norm for [1,1,1,1]:
 
-    Math.sqrt(1*1 + 1*1 + 1*1 + 1*1); //Returns two 
-    
+    Math.sqrt(1*1 + 1*1 + 1*1 + 1*1); //Returns two
+
 The following Javascript code would return the Euclidean norm for any vector passed in to it.
 
     function euclideanNorm(arr){
@@ -184,7 +184,7 @@ The second thing is to know how you can also use the Euclidean norm to find the 
     function dist(vectorOne, vectorTwo){
         return euclideanNorm(vectorSub(vectorOne, vectorTwo));
     }
-    
+
 It should now be clear why you can do this.  Remember, this distance is well defined for vectors with an arbitrarily large dimensionality as well as vectors in "normal" two and three dimensional spaces.
 
 ## Supervised Learning
@@ -212,7 +212,7 @@ Suppose that we want to be able to tell whether a particular student got into co
         [[150,65],1],
         ...
     ];
-    
+
 The first element of each element in the array is the vector giving the weight in pounds and the height in inches of the person in question; the second element is 0 if they are a football player and 1 if they are a track-and-field athlete.
 
 Each column in a set of training data such as this is referred to as a **feature**.  There are two features in the above set of data; the first feature is given in pounds, and the second feature is given in inches.
@@ -335,15 +335,15 @@ When the centroids have stopped moving, then Lloyd's algorithm has completed.  H
 Consider a dataset that consists of eight points, portrayed like this in beautiful ASCII art:
 
     ..                                      ..
-    
+
     ..                                      ..
-    
+
 Suppose two centroids randomly chosen were placed something like this.
 
     ..                  C                   ..
-    
+
     ..                  C                   ..
-    
+
 As it happens, they will both remain in place when k-means runs.   The top centroid is closest to the top four points, and at their average location, just as the bottom centroid is closest to the bottom four points, and at their average location.  So Lloyd's algorithm will keep them in place, and return them as cluster-defining vectors for the data.
 
 Even so, a better location for each centroid would clearly be as follows.
@@ -351,7 +351,7 @@ Even so, a better location for each centroid would clearly be as follows.
     ..                                      ..
     C                                       C
     ..                                      ..
-    
+
 The clustering here is much tighter.  The sum of the squared distances of each point to the centroid to which it belongs is much less.  Nevertheless, there is no guarantee the k-means algorithm will come to this globally best solution.
 
 Generally speaking, a poor solution that an algorithm can get "stuck" at while attempting to make incremental improvements is called a **local minima** or **local maxima**.  It makes sense to call it local minima right now, because we're trying to minimize the sum of squared distances, but the two ideas are otherwise the same.
@@ -362,7 +362,7 @@ Here's another instance of k-means converging on a local minima.  The initial lo
 
 ### Local Minima, continued
 
-The problems caused by local minima (or local maxima) are not unique to k-means or unsupervised learning.  They happen in every field of machine learning. 
+The problems caused by local minima (or local maxima) are not unique to k-means or unsupervised learning.  They happen in every field of machine learning.
 
 Many algorithms work by slowly shifting their parameters towards a better solution.  Just as k-means shifts centroids from location to location in an attempt to minimize the sum of squared distances, other ML algorithms shift their parameters about in an attempt to minimize or maximize some other amount.  Sometimes, however, the algorithm finds itself with parameters such that any small shift makes the solution worse--even though this particular set of parameters is not the absolute best.  This is a local minima or maxima.
 
@@ -380,7 +380,7 @@ If you open the folder 002_kmeans, you'll see a spec file defining characteristi
 
 As before, the spec file can be run by typing "mocha kmeans_specs.js" at the command line.   More detailed instructions for what to do are included in the spec file itself.  You will need to read these comments.
 
-When fully uncommented, the specs will also make images of the groups that the algorithm comes up with. 
+When fully uncommented, the specs will also make images of the groups that the algorithm comes up with.
 
 There is also an extended extra-credit section to the spec file.  Feel free to try to do it, but don't be discouraged if you find it difficult.
 
@@ -460,7 +460,7 @@ There are a few constraints placed on these variables.  The reward is always a s
 
 Another assumption many algorithms make is that there are a finite number of states.  In cases where the raw state is defined by real numbers, of course, there could easily be an infinite number of states--there is room for infinite real numbers between 0 and 1.  So in many cases the state is made discrete (and potentially finite) by rounding each number defining it to the nearest integer, or tenth of an integer or whatever is suitable fo the application at hand.  This is something that you'll do in the exercise.
 
-Here's an example of a reinforcement agent.  Suppose our agent were a program meant to handle elevators in a building.  The state could be an array, some of whose values are 1 or 0 depending on whether particular up / down buttons are pressed, and some of whose values indicate the current elevation and speeds of each elevator.  The action selected by the agent could be lifting, lowering, or opening any elevator.  The reward would be some kind of signal inversely related to the time between button-depression and door-opening at each building floor: it would be higher the shorter this period was.  The agent would then aim to maximize the reward over time by lifting, lowering, or opening the elevators to minimize wait-time. 
+Here's an example of a reinforcement agent.  Suppose our agent were a program meant to handle elevators in a building.  The state could be an array, some of whose values are 1 or 0 depending on whether particular up / down buttons are pressed, and some of whose values indicate the current elevation and speeds of each elevator.  The action selected by the agent could be lifting, lowering, or opening any elevator.  The reward would be some kind of signal inversely related to the time between button-depression and door-opening at each building floor: it would be higher the shorter this period was.  The agent would then aim to maximize the reward over time by lifting, lowering, or opening the elevators to minimize wait-time.
 
 ### Markov Property
 
@@ -510,7 +510,7 @@ Here's how it goes.
 
 Suppose that we run through a training episode using soft policy 𝜋 to make decisions.  Suppose, furthermore, at each step in the episode we save (1) state-action pair for that step and (2) the reward in that step.  After the training episode concludes, we could run through each saved step from beginning to end.  While going through the steps, every time we find a state-action pair that we had not seen until that point in the training episode, we could sum up the total rewards which ocurred _after_ the this ocurrence of that state-action pair.  This summed value could be pushed to an array specific to that state-action pair.  This process could then be repeated through many training episodes.
 
-After each training episode, an average could be taken from the arrays specific to each state-action pair and this could be used to approximate Q<sup>𝜋</sup>(s,a) for that policy. 
+After each training episode, an average could be taken from the arrays specific to each state-action pair and this could be used to approximate Q<sup>𝜋</sup>(s,a) for that policy.
 
 Because the policy is soft, over time this procedure is guaranteed to visit every state-value pair.  Each value which it pushes to the arrays specific to each state-action pair is the the total cumulative reward following that state, over one single episode.  As the number of episodes increases, the average of each of these arrays is then guaranteed to approach the action-value function Q<sup>𝜋</sup>(s,a) for that state and action for policy 𝜋.  And this is a Monte-Carlo method of estimating the action-value function over the course of many training episodes.
 
@@ -536,11 +536,11 @@ On each time step, the ɛ-greedy policy is given a particular state.  It wishes 
 
 This should be a little confusing.
 
-The above presupposes, you'll notice, that there already is some kind of an action-value function that the ɛ-greedy policy is using.  But the process of estimating the action-value function for a given policy, in the prior section, presupposes that there already is some policy for which the the alogorithm is finding the action-value function.  This seems a little problematic.  As the action-value function changes, it seems like the ɛ-greedy policy will change; and as the ɛ-greedy policy changes, it seems like the action value function relative to that policy will change as well. 
+The above presupposes, you'll notice, that there already is some kind of an action-value function that the ɛ-greedy policy is using.  But the process of estimating the action-value function for a given policy, in the prior section, presupposes that there already is some policy for which the the alogorithm is finding the action-value function.  This seems a little problematic.  As the action-value function changes, it seems like the ɛ-greedy policy will change; and as the ɛ-greedy policy changes, it seems like the action value function relative to that policy will change as well.
 
 ### General Policy Iteration
 
-The aforementioned apparent problem is actually one instance of a general reinforcement-learning algorithm called general policy iteration. 
+The aforementioned apparent problem is actually one instance of a general reinforcement-learning algorithm called general policy iteration.
 
 In general policy iteration, one starts with an arbitrary policy and an arbitrary action-value estimate for that policy.  One then alternates improving (1) the action-value function relative to the arbitrary policy and (2) making the policy greedy relative to that action-value function.  These two changes work against each other, in the sense that each provides a shifting target.  But they work together because, in the end, the only stable position for either of them is (1) the optimal action-value function, which gives the value of each state beneath the optimal ɛ-greedy policy and (2) the optimal ɛ-greedy policy.
 
@@ -556,7 +556,7 @@ Let me explain the full algorithm
 	4. Let the properties in the 'action-value' object equal the average of the the arrays beneath the corresponding 'returns' properties.
 3. Conclude after a set number of iterations, after the values in the 'state-action' object cease to change more than a small amount.
 
-In effect, what this does is to start off with a policy that is random--the ɛ-greedy policy will initially just choose random actions, because its estimate for the every move will simply be the default value.  But those random actions which result in higher returns will soon begin to be chosen more often than those random actions which result in lower returns.  So the actions will steadily become less random, although they will always remain random to such an extent that they never stop exploring entirely. 
+In effect, what this does is to start off with a policy that is random--the ɛ-greedy policy will initially just choose random actions, because its estimate for the every move will simply be the default value.  But those random actions which result in higher returns will soon begin to be chosen more often than those random actions which result in lower returns.  So the actions will steadily become less random, although they will always remain random to such an extent that they never stop exploring entirely.
 
 ### Coding
 
@@ -588,5 +588,4 @@ Wikipedia is actually a great resource for ML algorithms.  Using Wikipedia to im
 
 One thing to be aware of is, as far as I can tell, most machine learning seems to focus on supervised and unsupervised learning; reinforcement learning does not fit as well within the "big data analysis" paradigm which seems to dominate machine learning classes.  So it seems unlikely that you'll learn reinforcement learning techniques unless you consciously set forth to learn them, unless I am mistaken.  Barto and Sutton's "Reinforcement Learning: An Introduction," has been an absolutely invaluable source to me while writing this tutorial, and I highly recommend it as a basic introduction to the topic.
 
-Finally, if you're interested artificial intelligence simply speaking, Russel and Norvig's "Artificial Intelligence: A Modern Approach" is probably the place you want to start. 
-
+Finally, if you're interested artificial intelligence simply speaking, Russel and Norvig's "Artificial Intelligence: A Modern Approach" is probably the place you want to start.
